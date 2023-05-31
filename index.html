@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch-API-Practice</title>
+</head>
+<body>
+    <img src="#"> 
+
+    <button id="fetch-btn">Fetch Img</button>
+
+    <form action="" id="form"> 
+        <label for="search">Input your search</label>
+        <input type="search" name="search" id="search">
+        <input type="submit" id="submit">
+        <div id="error"></div>
+    </form> 
+
+
+    <script> 
+
+// const DOMElement = {value: ""} 
+
+// It's simpler than that. Like I said before, you assign the element (which is an object) to the variable instead of its value; 
+// then you pass the value of the element when needed (so after the =).
+
+            let fetchBtn = document.getElementById('fetch-btn'); 
+
+            // let value = ''; 
+
+            let updateValue = {value: ''} 
+
+            // let updateValue = document.getElementById('search').value; 
+
+            // console.log(updateValue);
+
+
+        let searchFormInputBtn = document.getElementById('submit'); 
+
+        let searchFormInputValue = document.getElementById('search').value;
+
+        let searchFormInputField = document.getElementById('search'); 
+
+        console.log(searchFormInputField);
+
+        // let error = document.getElementById('error'); 
+
+        console.log(searchFormInputValue);
+
+        searchFormInputBtn.addEventListener('click', (e) => { 
+            e.preventDefault();  
+           // updateValue = document.getElementById('search').value; 
+           // console.log(updateValue);
+            fetch('https://api.giphy.com/v1/gifs/translate?api_key=yvY2ZaKIJ3IEtLtzLjasfaje2q6wFIKj&s=searchFormInputValue', {mode: 'cors'})
+        .then(function(response) {
+            return response.json(); 
+        })
+        .then(function(response) {
+            console.log(response);
+         img.src = response.data.images.original.url;
+    }).catch((error) => { 
+        let errorDiv = document.getElementById('error');
+        errorDiv.textContent = "404 error";
+    })
+    })
+
+
+
+    const img = document.querySelector('img');
+    // fetch('https://api.giphy.com/v1/gifs/translate?api_key=yvY2ZaKIJ3IEtLtzLjasfaje2q6wFIKj&s=cats', {mode: 'cors'})
+    // .then(function(response) {
+    //     return response.json();
+    // })
+    // .then(function(response) {
+    //     img.src = response.data.images.original.url;
+    // }); 
+
+    // Expand on our little project here by adding a button 
+    // that fetches a new image without refreshing the page. 
+    // search first sentence which will link to a post that may help. 
+
+    // to make this work in the example, 
+
+    // I first need to set the variable to empty value 
+
+    // then make another variable which changes the value, 
+
+    // attach the changed value as the new search? Basically put the variable after the = in the fetch url?  
+
+
+    fetchBtn.addEventListener('click', (e) => { 
+        fetch('https://api.giphy.com/v1/gifs/translate?api_key=yvY2ZaKIJ3IEtLtzLjasfaje2q6wFIKj&s=cats', {mode: 'cors'})
+        .then(function(response) {
+            return response.json(); 
+        })
+        .then(function(response) {
+            console.log(response);
+         img.src = response.data.images.original.url;
+    }); 
+    }) 
+
+    // const DOMElement = {value: ""}
+    // let value = DOMElement.value
+
+    // DOMElement.value = "foo"
+
+    // console.log(value)
+
+
+//     const DOMElement = {value: ""}
+// let elementRef = DOMElement
+
+// DOMElement.value = "foo"
+
+// console.log(elementRef.value)
+
+
+    </script>
+</body>
+</html>
