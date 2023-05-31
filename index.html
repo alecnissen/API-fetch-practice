@@ -23,9 +23,6 @@
 
 // const DOMElement = {value: ""} 
 
-// It's simpler than that. Like I said before, you assign the element (which is an object) to the variable instead of its value; 
-// then you pass the value of the element when needed (so after the =).
-
             let fetchBtn = document.getElementById('fetch-btn'); 
 
             // let value = ''; 
@@ -39,21 +36,21 @@
 
         let searchFormInputBtn = document.getElementById('submit'); 
 
-        let searchFormInputValue = document.getElementById('search').value;
+        let searchFormInput = document.getElementById('search');
+
+        // let searchFormInputValue = document.getElementById('search').value; 
+
+        // let searchFormInputValue = {value: ''};
 
         let searchFormInputField = document.getElementById('search'); 
 
-        console.log(searchFormInputField);
-
         // let error = document.getElementById('error'); 
-
-        console.log(searchFormInputValue);
 
         searchFormInputBtn.addEventListener('click', (e) => { 
             e.preventDefault();  
            // updateValue = document.getElementById('search').value; 
            // console.log(updateValue);
-            fetch('https://api.giphy.com/v1/gifs/translate?api_key=yvY2ZaKIJ3IEtLtzLjasfaje2q6wFIKj&s=searchFormInputValue', {mode: 'cors'})
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=yvY2ZaKIJ3IEtLtzLjasfaje2q6wFIKj&s=${searchFormInput.value}`, {mode: 'cors'})
         .then(function(response) {
             return response.json(); 
         })
