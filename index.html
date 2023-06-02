@@ -222,36 +222,36 @@
 // start(); 
 
 
-function makeRequest(location) { 
-    return new Promise((resolve, reject) => { 
-        console.log(`Making Request to ${location}`)
-        if (location === 'Google') { 
-            resolve('Google says hi')
-        } else { 
-            reject('We can only talk to Google')
-        }
-    })
-}
+// function makeRequest(location) { 
+//     return new Promise((resolve, reject) => { 
+//         console.log(`Making Request to ${location}`)
+//         if (location === 'Google') { 
+//             resolve('Google says hi')
+//         } else { 
+//             reject('We can only talk to Google')
+//         }
+//     })
+// }
 
-function processRequest(response) { 
-    return new Promise((resolve, reject) => { 
-        console.log('Processing response')
-        resolve(`Extra Information + ${response}`)
-    })
-} 
+// function processRequest(response) { 
+//     return new Promise((resolve, reject) => { 
+//         console.log('Processing response')
+//         resolve(`Extra Information + ${response}`)
+//     })
+// } 
 
-async function doWork() { 
-    try { 
-        const response = await makeRequest('Facebook'); 
-        console.log('Response Received'); 
-        const processedResponse = await processRequest(response)
-        console.log(processedResponse);
-    } catch (err) { 
-        console.log(err)
-    }
-}
+// async function doWork() { 
+//     try { 
+//         const response = await makeRequest('Facebook'); 
+//         console.log('Response Received'); 
+//         const processedResponse = await processRequest(response)
+//         console.log(processedResponse);
+//     } catch (err) { 
+//         console.log(err)
+//     }
+// }
 
-doWork();
+// doWork();
 
 
 // makeRequest('Facebook').then(response => { 
@@ -263,6 +263,111 @@ doWork();
 // }).catch(err => { 
 //     console.log(err);
 // }) 
+
+    // function getWeather() { 
+    //     return new Promise(function(resolve, reject) {
+    //         setTimeout(() => {
+    //         reject('Partly Cloudy')
+    //         }, 100)
+    //     })
+    // } 
+
+    // function getWeatherIcon(weather) { 
+    //     return new Promise(function(resolve, reject) {
+    //         setTimeout(() => {
+    //         switch(weather){
+    //             case 'Sunny':
+    //             resolve('Sunny today!')
+    //             break
+            
+    //             case 'Cloudy': 
+    //             resolve('Cloudy today')
+    //             break
+
+    //             case 'Rainy': 
+    //             resolve('Rain')
+    //             break
+
+    //             default: 
+    //             reject('NO MSG FOUND')
+    //         }
+    //         }, 100)
+    //     })
+    // }
+
+    // function onSuccess(data) {
+    //     console.log(`Success ${data}`)
+    // } 
+
+    // function onError(error) { 
+    //     console.log(`Error: ${error}`)
+    // }
+
+    //  getWeather()
+    //  .then(getWeatherIcon)
+    //  .then(onSuccess)
+    //  .catch(onError) 
+
+    // color code promises video code below 
+
+
+    // function fun1() { 
+    //     return new Promise((resolve, reject) => { 
+    //         setTimeout(() => { 
+    //         reject('bad data')
+    //         }, 100)
+    //     })
+    // }
+
+    // function fun2() { 
+    //     return new Promise((resolve, reject) => { 
+    //         setTimeout(() => { 
+    //         resolve('heh')
+    //         }, 100)
+    //     })
+    // } 
+
+    // function onSuccess(data) { 
+    //     console.log(`Success: ${data}`)
+    // } 
+
+    // function onError(errorCode) { 
+    //     console.log(`ERROR: ${errorCode}`)
+    // } 
+
+    // function onFinally() { 
+    //     console.log('WE GONE HOMIE!')
+    // }
+
+
+    // fun1()
+    // .then(fun2)
+    // .then(onSuccess)
+    // .catch(onError)
+    // .finally(onFinally)
+    
+
+
+    function fetchData() {
+        return new Promise(function(resolve, reject){
+            fetch('http://api.weather.gov/gridpoints/OKX/35,35/forecast')
+            .then(response => response.json())
+            .then(data => resolve(data.properties.periods[1].shortForecast));
+        })
+    } 
+
+    function displayData(weather) { 
+        console.log(weather)
+    } 
+
+    function onError(err) { 
+        console.log(`ERROR ${err}`)
+    }
+
+    fetchData()
+    .then(displayData)
+    .catch(onError)
+
     </script>
 </body>
 </html>
